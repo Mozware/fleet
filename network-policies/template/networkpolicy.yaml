@@ -1,5 +1,4 @@
 {{- range .Values.namespaces }}
-
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -9,20 +8,19 @@ spec:
   podSelector: {}
 
   policyTypes:
-  - Ingress
-  - Egress
+    - Ingress
+    - Egress
 
   ingress:
   - from:
     - namespaceSelector:
         matchLabels:
-          field.cattle.io/projectId: p-vg4vf
+          field.cattle.io/projectId: {{ $.Values.projectId }}
 
   egress:
   - to:
     - namespaceSelector:
         matchLabels:
-          field.cattle.io/projectId: p-vg4vf
-
+          field.cattle.io/projectId: {{ $.Values.projectId }}
 ---
 {{- end }}
