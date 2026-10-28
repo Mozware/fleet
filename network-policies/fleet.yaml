@@ -1,22 +1,9 @@
-apiVersion: networking.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: allow-project-dev
-spec:
-  podSelector: {}
+defaultNamespace: ebankmobiledev
 
-  policyTypes:
-    - Ingress
-    - Egress
+targetCustomizations:
 
-  ingress:
-    - from:
-        - namespaceSelector:
-            matchLabels:
-              field.cattle.io/projectId: p-vg4vf
+- name: dev-namespaces
 
-  egress:
-    - to:
-        - namespaceSelector:
-            matchLabels:
-              field.cattle.io/projectId: p-vg4vf
+  namespaceSelector:
+    matchLabels:
+      field.cattle.io/projectId: p-vg4vf
